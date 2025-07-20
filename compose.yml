@@ -1,0 +1,11 @@
+services:
+  maily-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: maily-react-app
+    env_file:
+      - ./apps/web/.env
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
