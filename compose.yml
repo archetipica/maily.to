@@ -8,4 +8,4 @@ services:
       - ./apps/web/.env
     restart: unless-stopped
     ports:
-      - '3000:3000'
+      - '3210:3210'

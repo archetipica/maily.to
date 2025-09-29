@@ -9,6 +9,8 @@ export default defineConfig(({ isSsrBuild, command, mode }) => { // Aggiungi 'mo
   // non solo quelle con prefisso VITE_
   const env = loadEnv(mode, process.cwd(), '');
 
+  let serverPort = 3210;
+
   let allowedHosts = [
     'localhost',
     '127.0.0.1',
@@ -22,6 +24,8 @@ export default defineConfig(({ isSsrBuild, command, mode }) => { // Aggiungi 'mo
                                                     .map(host => host.trim()) // Rimuovi spazi extra e assicurati che non ci siano elementi vuoti
                                                     .filter(host => host.length > 0)
     );
+  } else if (env.__VITE_PORT) {
+    serverPort = parseInt(env.__VITE_PORT);
   }
 
   return {
@@ -30,6 +34,7 @@ export default defineConfig(({ isSsrBuild, command, mode }) => { // Aggiungi 'mo
       noExternal: [/^@maily-to\//, /^@radix-ui\//, /^@tiptap\//],
     },
     server: {
+      port: serverPort,
       host: '0.0.0.0', // Imposta l'host per consentire l'accesso esterno
       allowedHosts: allowedHosts // Utilizza l'array di host consentiti che abbiamo costruito
     }
