@@ -18,6 +18,10 @@ export type Variable = {
   // should hide default value
   // default is false
   hideDefaultValue?: boolean;
+
+  // label is the label of the variable
+  // default is the name of the variable
+  label?: string;
 };
 
 export type VariableFunctionOptions = {
@@ -278,7 +282,7 @@ export const VariableExtension = Node.create<VariableOptions, VariableStorage>({
 
   addNodeView() {
     return ReactNodeViewRenderer(VariableView, {
-      className: 'mly-relative mly-inline-block',
+      className: 'mly:relative mly:inline-block',
       as: 'div',
     });
   },
